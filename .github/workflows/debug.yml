@@ -1,0 +1,19 @@
+name: "Debug"
+on:
+  workflow_dispatch:
+    inputs:
+      param1:
+        description: 'Example param'
+        required: true
+      param2:
+        description: 'Another example param'
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Debug"
+        env:
+          INPUTS_DEBUG: ${{ toJSON(github.event.inputs) }}
+        run: echo $INPUTS_DEBUG
