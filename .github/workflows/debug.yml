@@ -14,4 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Debug"
-        run: echo ${{ toJSON(github.event.inputs) }}
+        env:
+          INPUTS_DEBUG: ${{ toJSON(github.event.inputs) }}
+        run: echo $INPUTS_DEBUG
