@@ -5,5 +5,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: "Hello!"
-        run: echo Hello
+      - name: "Hi"
+        run: echo Hi
