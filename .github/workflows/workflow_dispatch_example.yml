@@ -1,9 +1,15 @@
 name: "Workflow dispatch example"
 on:
   workflow_dispatch:
+    inputs:
+      date:
+        description: 'Reference date in YYYY-MM-DD format, defaults to yesterday'
+        required: false
 jobs:
   test:
+    env:
+      REFERENCE_DATE: ${{ github.event.inputs.date || '2021-11-01' }}
     runs-on: ubuntu-latest
     steps:
       - name: "Hello!"
-        run: echo Hello
+        run: echo $REFERENCE_DATE
