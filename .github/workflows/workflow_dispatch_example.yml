@@ -7,9 +7,12 @@ on:
         required: false
 jobs:
   test:
-    env:
-      REFERENCE_DATE: ${{ github.event.inputs.date || '2021-11-01' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date -d 'yesterday 13:00' +'%Y-%m-%d')"
       - name: "Hello!"
+        env:
+          REFERENCE_DATE: ${{ github.event.inputs.date || steps.date.outputs.date }}
         run: echo $REFERENCE_DATE
