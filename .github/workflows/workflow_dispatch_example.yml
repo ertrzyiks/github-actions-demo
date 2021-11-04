@@ -12,7 +12,7 @@ jobs:
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date -d 'yesterday 13:00' +'%Y-%m-%d')"
+      - run: echo "REFERENCE_DATE=${{ github.event.inputs.date || steps.date.outputs.date }}" >> $GITHUB_ENV
+
       - name: "Hello!"
-        env:
-          REFERENCE_DATE: ${{ github.event.inputs.date || steps.date.outputs.date }}
         run: echo $REFERENCE_DATE
